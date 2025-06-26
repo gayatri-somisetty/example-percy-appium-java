@@ -24,8 +24,8 @@ public class Android {
     public static void main(String[] args) throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         // Browserstack specific capabiilities
-        capabilities.setCapability("browserstack.user", "<USER>");
-        capabilities.setCapability("browserstack.key", "<USER_AUTH_KEY>");
+        capabilities.setCapability("browserstack.user", "mdbpunes1");
+        capabilities.setCapability("browserstack.key", "p7wyhyhpXs97oZ9jURkM");
         capabilities.setCapability("browserstack.appium_version", "1.20.2");
 
         // Percy Options
@@ -33,7 +33,7 @@ public class Android {
         capabilities.setCapability("percy.ignoreErrors", "true");
 
         // App url we get post uploading in response
-        capabilities.setCapability("app", "<APP_URL>");
+        capabilities.setCapability("app", "bs://6c91154b1ad48c661d8e523de34a2d58cddb8777");
         capabilities.setCapability("device", "Google Pixel 3");
         capabilities.setCapability("os_version", "9.0");
         capabilities.setCapability("project", "First Java Project");
@@ -59,7 +59,7 @@ public class Android {
 
         AndroidElement textInput = (AndroidElement) new WebDriverWait(driver, 30).until(
             ExpectedConditions.elementToBeClickable(MobileBy.id("org.wikipedia.alpha:id/search_src_text")));
-        textInput.sendKeys("Browserstack\n");
+        textInput.sendKeys("App percy\n");
 
         try {
             TimeUnit.SECONDS.sleep(5);

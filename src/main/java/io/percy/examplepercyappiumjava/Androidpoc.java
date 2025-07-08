@@ -24,8 +24,8 @@ public class Androidpoc {
     public static void main(String[] args) throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         // Browserstack specific capabiilities
-        capabilities.setCapability("browserstack.user", "gayatri44");
-        capabilities.setCapability("browserstack.key", "znYsLwfJDaYZZVgWj5kF");
+        capabilities.setCapability("browserstack.user", "mdbpunes1");
+        capabilities.setCapability("browserstack.key", "p7wyhyhpXs97oZ9jURkM");
         capabilities.setCapability("browserstack.appium_version", "1.20.2");
 
         // Percy Options
@@ -33,9 +33,9 @@ public class Androidpoc {
         capabilities.setCapability("percy.ignoreErrors", "true");
 
         // App url we get post uploading in response
-        capabilities.setCapability("app", "bs://bbd522294c1f23e80e97dea3709fe6dc21f0028e");
-        capabilities.setCapability("device", "Google Pixel 3");
-        capabilities.setCapability("os_version", "9.0");
+        capabilities.setCapability("app", "bs://26f7986269d8123abeefc80dcb4498de1c9b2c53");
+        capabilities.setCapability("device", "Google Pixel 7");
+        capabilities.setCapability("os_version", "13.0");
         capabilities.setCapability("project", "First Java pocProject");
 
         // Create sessioin
@@ -51,6 +51,7 @@ public class Androidpoc {
         }
         // Take First Screenshot
         percy.screenshot("First Screenshot");
+        
 
 
        /* AndroidElement searchElement = (AndroidElement) new WebDriverWait(driver, 30).until(
@@ -59,7 +60,7 @@ public class Androidpoc {
 
         AndroidElement textInput = (AndroidElement) new WebDriverWait(driver, 30).until(
             ExpectedConditions.elementToBeClickable(MobileBy.xpath("//android.widget.EditText[@text=\"username\"]")));
-        textInput.sendKeys("App percy\n");
+        textInput.sendKeys("App demo1\n");
 
         try {
             TimeUnit.SECONDS.sleep(5);

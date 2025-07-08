@@ -2,20 +2,18 @@ package io.percy.examplepercyappiumjava;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.MobileBy;
-
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 
 import io.percy.appium.AppPercy;
 
-public class Android {
+public class iospoc {
     private static AppPercy percy;
 
     // Hub Url to connect to Automation session
@@ -33,42 +31,32 @@ public class Android {
         capabilities.setCapability("percy.ignoreErrors", "true");
 
         // App url we get post uploading in response
-        capabilities.setCapability("app", "bs://6c91154b1ad48c661d8e523de34a2d58cddb8777");
-        capabilities.setCapability("device", "Google Pixel 3");
-        capabilities.setCapability("os_version", "9.0");
+        capabilities.setCapability("app", "bs://8549e23587eb5fdd980133e9c9cf35f99fcc93c6");
+        capabilities.setCapability("device", "iPhone 14");
+        capabilities.setCapability("os_version", "16");
         capabilities.setCapability("project", "First Java Project");
 
         // Create sessioin
-        AndroidDriver<AndroidElement> driver = new AndroidDriver<AndroidElement>(new URL(HUB_URL), capabilities);
+        IOSDriver<IOSElement> driver = new IOSDriver<IOSElement>(new URL(HUB_URL), capabilities);
 
         // Initialize AppPercy
         percy = new AppPercy(driver);
 
-        try {
-            TimeUnit.SECONDS.sleep(5);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         // Take First Screenshot
         percy.screenshot("First Screenshot");
 
+        // Find element and click to change screen
+        IOSElement textButton = (IOSElement) new WebDriverWait(driver, 30).until(
+            ExpectedConditions.elementToBeClickable(MobileBy.xpath("//XCUIElementTypeTextField[@value=\"username”]")));
+        textButton.sendKeys("iospocusername");
 
-        AndroidElement searchElement = (AndroidElement) new WebDriverWait(driver, 30).until(
-            ExpectedConditions.elementToBeClickable(MobileBy.AccessibilityId("Search Wikipedia")));
-        searchElement.click();
+        // Find textInput and send some data to it
+        IOSElement textInput = (IOSElement) new WebDriverWait(driver, 30).until(
+            ExpectedConditions.elementToBeClickable(MobileBy.xpath("//XCUIElementTypeButton[@name=\"Click for Surprise\"]")));
+        textInput.click();
 
-        AndroidElement textInput = (AndroidElement) new WebDriverWait(driver, 30).until(
-            ExpectedConditions.elementToBeClickable(MobileBy.id("org.wikipedia.alpha:id/search_src_text")));
-        textInput.sendKeys("Android poc\n");
-
-        try {
-            TimeUnit.SECONDS.sleep(5);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        // Take Second Screenshot post scrolling
+        // Take Second Screenshot Post screen update
         percy.screenshot("Second Screenshot");
-
         driver.quit();
     }
 }

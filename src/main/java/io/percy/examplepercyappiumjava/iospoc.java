@@ -32,8 +32,8 @@ public class iospoc {
 
         // App url we get post uploading in response
         capabilities.setCapability("app", "bs://8549e23587eb5fdd980133e9c9cf35f99fcc93c6");
-        capabilities.setCapability("device", "iPhone 14");
-        capabilities.setCapability("os_version", "16");
+        capabilities.setCapability("device", "iPhone 15 Pro");
+        capabilities.setCapability("os_version", "17.1");
         capabilities.setCapability("project", "First Java Project");
 
         // Create sessioin
@@ -46,12 +46,16 @@ public class iospoc {
         percy.screenshot("First Screenshot");
 
         // Find element and click to change screen
-        IOSElement textButton = (IOSElement) new WebDriverWait(driver, 30).until(
+        try{IOSElement textButton = (IOSElement) new WebDriverWait(driver, 30).until(
             ExpectedConditions.elementToBeClickable(MobileBy.xpath("//XCUIElementTypeTextField[@value=\"username”]")));
         textButton.sendKeys("iospocusername");
-
+        percy.screenshot("First Screenshot");
+        }
+        catch (Exception e) {
+            System.out.println("Something went wrong.");
+          }
         // Find textInput and send some data to it
-        IOSElement textInput = (IOSElement) new WebDriverWait(driver, 30).until(
+       IOSElement textInput = (IOSElement) new WebDriverWait(driver, 30).until(
             ExpectedConditions.elementToBeClickable(MobileBy.xpath("//XCUIElementTypeButton[@name=\"Click for Surprise\"]")));
         textInput.click();
 
